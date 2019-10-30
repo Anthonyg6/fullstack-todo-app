@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import moment from "moment";
 import axios from "axios";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import TodoContainer from "./todo-container";
+import Login from "./login";
+import Home from "./home";
+import CatchAll from "./catch-all";
 
 export default class App extends Component {
   constructor(props) {
@@ -75,9 +79,17 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Welcome, what is on the agenda today?</h1>
-        <div>{moment().format("MMMM Do YYYY, h:mm:ss a")}</div>
-        <TodoContainer />
+        <Router>
+          <div>
+            <h1>Welcome, what is on the agenda today?</h1>
+            <div>{moment().format("MMMM Do YYYY, h:mm:ss a")}</div>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/login" component={Login} />
+              <Route component={CatchAll} />
+            </Switch>
+          </div>
+        </Router>
       </div>
     );
   }

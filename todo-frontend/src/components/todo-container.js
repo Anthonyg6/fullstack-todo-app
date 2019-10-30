@@ -6,7 +6,7 @@ export default class TodoContainer extends Component {
     super();
 
     this.state = {
-      isLoading: true,
+      isLoading: false,
       data: [
         { content: "Clean out the kennel" },
         { content: "Take out the trash" },
