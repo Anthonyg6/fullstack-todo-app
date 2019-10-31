@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 import TodoItem from "./todo-item";
 
 export default class TodoContainer extends Component {
@@ -7,18 +8,30 @@ export default class TodoContainer extends Component {
 
     this.state = {
       isLoading: false,
-      data: [
-        { content: "Clean out the kennel" },
-        { content: "Take out the trash" },
-        { content: "Wash the clothes" },
-        { content: "Mow the lawn" }
-      ]
+      data: []
     };
+  }
+
+  getTodoItems() {
+    axios
+      .get("http://localhost:3500/todo/todos")
+      .then(response => {
+        this.setState({
+          data: response.data
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  componentDidMount() {
+    this.getTodoItems();
   }
 
   todoItems() {
     return this.state.data.map(item => {
-      return <TodoItem todos={item.content} />;
+      return <TodoItem key={item._id} item={item} />;
     });
   }
   render() {
