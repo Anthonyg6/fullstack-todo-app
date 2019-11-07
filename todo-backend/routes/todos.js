@@ -3,6 +3,11 @@ const router = express.Router();
 
 let Todo = require("../todoModel/todo");
 
+const userCtrl = require("../controllers/user");
+
+router.post("/signup", userCtrl.signup);
+router.post("/login", userCtrl.login);
+
 router.post("/todos", async (req, res) => {
   const todo = new Todo({
     content: req.body.content

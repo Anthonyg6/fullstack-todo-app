@@ -13,6 +13,8 @@ app.use("/todo", todosRouter);
 app.listen(port, function() {
   console.log("Running on " + port);
 });
+app.use("/todo/login", todosRouter);
+app.use("/todo/signup", todosRouter);
 
 mongoose
   .connect(
