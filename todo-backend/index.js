@@ -7,14 +7,12 @@ const todosRouter = require("./routes/todos");
 const mongoose = require("mongoose");
 
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use("/todo", todosRouter);
 app.listen(port, function() {
   console.log("Running on " + port);
 });
-app.use("/todo/login", todosRouter);
-app.use("/todo/signup", todosRouter);
 
 mongoose
   .connect(

@@ -2,10 +2,7 @@ import React, { Component } from "react";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Auth from "./auth";
 import Home from "./home";
-
-import CatchAll from "./catch-all";
 
 export default class App extends Component {
   render() {
@@ -15,8 +12,6 @@ export default class App extends Component {
           <div>
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route path="/auth" component={Auth} />
-              <Route component={CatchAll} />
             </Switch>
           </div>
         </Router>

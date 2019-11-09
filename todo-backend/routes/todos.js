@@ -1,15 +1,13 @@
 const express = require("express");
 const router = express.Router();
+const app = express();
+const bodyParser = require("body-parser");
 
-let Todo = require("../todoModel/todo");
+const Todo = require("../todoModel/todo");
+app.use(bodyParser.json());
 
-const userCtrl = require("../controllers/user");
-
-router.post("/signup", userCtrl.signup);
-router.post("/login", userCtrl.login);
-
-router.post("/todos", async (req, res) => {
-  const todo = new Todo({
+router.post("/todos", async (req, res, next) => {
+  let todo = new Todo({
     content: req.body.content
   });
   todo
@@ -22,7 +20,7 @@ router.post("/todos", async (req, res) => {
     .catch(error => {
       console.log(error);
       res.status(400).json({
-        error
+        error: error
       });
     });
 });

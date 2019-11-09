@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import TodoItem from "./todo-item";
+import TodoForm from "./todo-form";
 
 export default class TodoContainer extends Component {
   constructor() {
@@ -16,9 +17,21 @@ export default class TodoContainer extends Component {
     axios
       .get("http://localhost:3500/todo/todos")
       .then(response => {
+        console.log(response);
         this.setState({
           data: response.data
         });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  postTodoItems() {
+    axios
+      .post(`http://localhost:3500/todo/todos`)
+      .then(response => {
+        console.log(response);
       })
       .catch(error => {
         console.log(error);
@@ -35,10 +48,14 @@ export default class TodoContainer extends Component {
     });
   }
   render() {
-    //conditional checks if the page is loading up todos
     if (this.state.isLoading) {
       return <div>Loading...</div>;
     }
-    return <div>{this.todoItems()}</div>;
+    return (
+      <div className="todo-container">
+        <div>{this.todoItems()}</div>
+        <TodoForm postTodoItems={this.postTodoItems} />
+      </div>
+    );
   }
 }
