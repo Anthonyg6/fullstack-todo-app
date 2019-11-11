@@ -11,27 +11,33 @@ export default class TodoContainer extends Component {
       isLoading: false,
       data: []
     };
+    this.postTodoItems = this.postTodoItems.bind(this);
   }
 
   getTodoItems() {
-    axios
-      .get("http://localhost:3500/todo/todos")
-      .then(response => {
-        console.log(response);
-        this.setState({
-          data: response.data
+    setInterval(() => {
+      axios
+        .get("http://localhost:3500/todo/todos")
+        .then(response => {
+          // console.log("response", response);
+          this.setState({
+            data: response.data
+          });
+        })
+        .catch(error => {
+          console.log(error);
         });
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    }, 400);
   }
 
   postTodoItems() {
     axios
-      .post(`http://localhost:3500/todo/todos`)
+      .post("http://localhost:3500/todo/todos")
       .then(response => {
-        console.log(response);
+        console.log("response", response);
+        this.setState({
+          data: response.data.content
+        });
       })
       .catch(error => {
         console.log(error);

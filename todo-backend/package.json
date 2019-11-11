@@ -1,10 +1,11 @@
 {
   "name": "todo-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "todo-backend",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/server.js",
+    "dev": "nodemon --watch src src/server.js"
   },
   "author": "Anthony Gallegos <anthony.bottega.codes@gmail.com> (https://github.com/Anthonyg6)",
   "license": "ISC",

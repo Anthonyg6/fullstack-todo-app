@@ -1,36 +1,62 @@
 import React, { Component } from "react";
-import Axios from "axios";
+import axios from "axios";
 
 export default class TodoForm extends Component {
   constructor() {
     super();
 
     this.state = {
-      content: []
+      content: ""
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange = e => {
+  handleChange(event) {
     this.setState({
-      content: e.target.value
+      [event.target.name]: event.target.value
     });
+  }
+
+  handleSubmit = event => {
+    event.preventDefault();
+    axios({
+      method: "post",
+      url: "http://localhost:3500/todo/todos",
+      headers: { "content-type": "application/json" },
+      data: {
+        content: this.state.content,
+        done: false
+      }
+    })
+      .then(data => {
+        this.setState({
+          contents: [...this.state.contents, data.data],
+          content: ""
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    this.setState({ content: "" });
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
-    this.props.postTodoItems();
-  };
   render() {
     return (
       <div className="todo-form-wrapper">
         <form className="todo-form" onSubmit={this.handleSubmit}>
-          <label className="form-label"> Lets Add some Todo's!</label>
           <input
             className="todo-input"
             type="text"
-            onChange={this.handleChange}
+            name="content"
+            placeholder="Add Some Todos!"
             value={this.state.content}
+            onChange={this.handleChange}
           />
+
+          <div className="todo-form-btn">
+            <button type="submit">Add</button>
+          </div>
         </form>
       </div>
     );
