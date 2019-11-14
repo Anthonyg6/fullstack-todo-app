@@ -6,6 +6,7 @@ export default class TodoForm extends Component {
     super();
 
     this.state = {
+      _id: "",
       content: ""
     };
     this.handleChange = this.handleChange.bind(this);
@@ -25,20 +26,23 @@ export default class TodoForm extends Component {
       url: "http://localhost:3500/todo/todos",
       headers: { "content-type": "application/json" },
       data: {
+        _id: this.state._id,
         content: this.state.content,
         done: false
       }
     })
       .then(data => {
         this.setState({
+          _ids: [...this.state._ids, data.data],
           contents: [...this.state.contents, data.data],
-          content: ""
+          content: "",
+          _id: ""
         });
       })
       .catch(error => {
         console.log(error);
       });
-    this.setState({ content: "" });
+    this.setState({ _id: "", content: "" });
   };
 
   render() {
@@ -53,10 +57,6 @@ export default class TodoForm extends Component {
             value={this.state.content}
             onChange={this.handleChange}
           />
-
-          <div className="todo-form-btn">
-            <button type="submit">Add</button>
-          </div>
         </form>
       </div>
     );

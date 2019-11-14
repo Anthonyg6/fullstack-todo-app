@@ -1,20 +1,38 @@
 import React, { Component } from "react";
-
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
-import Home from "./home";
+import TodoContainer from "./todo-container";
+import moment from "moment";
 
 export default class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      time: moment().format("MMM Do YYYY, h:mm:ss a")
+    };
+
+    this.updateTime = this.updateTime.bind(this);
+  }
+
+  updateTime() {
+    this.setState({
+      time: moment().format("MMM Do YYYY, h:mm:ss a")
+    });
+  }
+
+  componentDidMount() {
+    this.intervalID = setInterval(this.updateTime, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.intervalID);
+  }
+
   render() {
     return (
       <div className="App">
-        <Router>
-          <div>
-            <Switch>
-              <Route exact path="/" component={Home} />
-            </Switch>
-          </div>
-        </Router>
+        <h1>Welcome, what is on the agenda today?</h1>
+        {this.state.time}
+        <TodoContainer />
       </div>
     );
   }
@@ -34,22 +52,4 @@ export default class App extends Component {
 //         todos
 //       });
 //     });
-// };
-
-// addTodo = todo => {
-//   let todos = [...this.state.todos, todo];
-//   this.setState({ todos });
-// };
-
-// handleChange = e => {
-//   this.setState({
-//     todos: e.target.value
-//   });
-// };
-
-// handleSubmit = e => {
-//   e.preventDefault();
-//   this.setState({
-//     todos: []
-//   });
 // };

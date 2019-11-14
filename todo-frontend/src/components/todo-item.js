@@ -1,5 +1,4 @@
 import React from "react";
-
 export default function(props) {
   // Data that will be needed which will be content
   // _id

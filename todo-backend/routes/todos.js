@@ -25,7 +25,7 @@ router.post("/todos", async (req, res, next) => {
     });
 });
 
-router.delete("/:id", (req, res, next) => {
+router.delete("/:_id", (req, res, next) => {
   Todo.deleteOne({ _id: req.params._id })
     .then(() => {
       res.status(200).json({

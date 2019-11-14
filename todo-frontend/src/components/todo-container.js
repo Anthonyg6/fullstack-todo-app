@@ -8,10 +8,10 @@ export default class TodoContainer extends Component {
     super();
 
     this.state = {
-      isLoading: false,
       data: []
     };
-    this.postTodoItems = this.postTodoItems.bind(this);
+
+    this.deleteTodos = this.deleteTodos.bind(this);
   }
 
   getTodoItems() {
@@ -19,9 +19,9 @@ export default class TodoContainer extends Component {
       axios
         .get("http://localhost:3500/todo/todos")
         .then(response => {
-          // console.log("response", response);
           this.setState({
-            data: response.data
+            data: response.data,
+            isLoading: true
           });
         })
         .catch(error => {
@@ -30,37 +30,52 @@ export default class TodoContainer extends Component {
     }, 400);
   }
 
-  postTodoItems() {
-    axios
-      .post("http://localhost:3500/todo/todos")
-      .then(response => {
-        console.log("response", response);
-        this.setState({
-          data: response.data.content
-        });
-      })
-      .catch(error => {
-        console.log(error);
-      });
+  deleteTodos() {
+    console.log("event", event);
   }
+
+  // handleClick = _id => {
+  //   console.log("clicked!!!!");
+  // axios
+  //   .delete(`http://localhost:3500/todo/todos/${_id}`)
+  //   .then("response", response)
+  //   .catch(error => {
+  //     console.log(error);
+  //   });
 
   componentDidMount() {
     this.getTodoItems();
+    console.log(this.state.data);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.getTodoItems);
   }
 
   todoItems() {
-    return this.state.data.map(item => {
-      return <TodoItem key={item._id} item={item} />;
-    });
-  }
-  render() {
-    if (this.state.isLoading) {
-      return <div>Loading...</div>;
+    if (this.state.data.length == 0) {
+      return (
+        <div>
+          <p>You do not have any todos!</p>
+        </div>
+      );
+    } else {
+      return this.state.data.map(items => {
+        return <div>{items.content}</div>;
+      });
     }
+  }
+
+  // todoItems() {
+  //   return this.state.data.map(items => {
+  //     return <div>{items.content}</div>;
+  //   });
+  // }
+  render() {
     return (
       <div className="todo-container">
         <div>{this.todoItems()}</div>
-        <TodoForm postTodoItems={this.postTodoItems} />
+        <TodoForm />
       </div>
     );
   }
