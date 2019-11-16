@@ -25,8 +25,8 @@ router.post("/todos", async (req, res, next) => {
     });
 });
 
-router.delete("/:_id", (req, res, next) => {
-  Todo.deleteOne({ _id: req.params._id })
+router.delete("/todos/:id", (req, res, next) => {
+  Todo.findOneAndDelete({ _id: req.params.id })
     .then(() => {
       res.status(200).json({
         message: "Deleted Todo"
@@ -34,6 +34,20 @@ router.delete("/:_id", (req, res, next) => {
     })
     .catch(error => {
       res.status(400).json(error);
+    });
+});
+
+router.get("/todos/:id", (req, res, next) => {
+  Todo.findOne({
+    _id: req.params.id
+  })
+    .then(Todo => {
+      res.status(200).json(Todo);
+    })
+    .catch(error => {
+      res.status(404).json({
+        error
+      });
     });
 });
 

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import TodoItem from "./todo-item";
 import TodoForm from "./todo-form";
 
 export default class TodoContainer extends Component {
@@ -20,8 +19,7 @@ export default class TodoContainer extends Component {
         .get("http://localhost:3500/todo/todos")
         .then(response => {
           this.setState({
-            data: response.data,
-            isLoading: true
+            data: response.data
           });
         })
         .catch(error => {
@@ -30,22 +28,20 @@ export default class TodoContainer extends Component {
     }, 400);
   }
 
-  deleteTodos() {
-    console.log("event", event);
+  deleteTodos(_id) {
+    event.preventDefault();
+    axios
+      .delete(`http://localhost:3500/todo/todos/${_id}`)
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
-
-  // handleClick = _id => {
-  //   console.log("clicked!!!!");
-  // axios
-  //   .delete(`http://localhost:3500/todo/todos/${_id}`)
-  //   .then("response", response)
-  //   .catch(error => {
-  //     console.log(error);
-  //   });
 
   componentDidMount() {
     this.getTodoItems();
-    console.log(this.state.data);
   }
 
   componentWillUnmount() {
@@ -61,16 +57,19 @@ export default class TodoContainer extends Component {
       );
     } else {
       return this.state.data.map(items => {
-        return <div>{items.content}</div>;
+        return (
+          <div className="todos" key={items._id}>
+            <span>{items.content}</span>
+            <button
+              className="deleteTodo-btn"
+              onClick={() => this.deleteTodos(items._id)}
+            />
+          </div>
+        );
       });
     }
   }
 
-  // todoItems() {
-  //   return this.state.data.map(items => {
-  //     return <div>{items.content}</div>;
-  //   });
-  // }
   render() {
     return (
       <div className="todo-container">
