@@ -1,28 +1,54 @@
 html {
-    font-size: 62.5%; // 1rem is 10px
+  margin: 0;
+  height: 100%;
+  font-size: 95%;
+}
+body {
+  font-family: "Roboto", sans-serif;
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -webkit-tap-highlight-color: transparent;
 }
 
 *,
 *::after,
 *::before {
-    margin: 0;
-    padding: 0;
-    box-sizing: inherit;
-    font-family: 'montserrat';
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
 }
 
-body {
-    overflow-x: hidden;
-    font-weight: normal;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-    -webkit-tap-highlight-color: transparent;
+.app-wrapper {
+  display: grid;
+  height: 100%;
+  justify-content: center;
 }
 
 .app {
-    margin-top: 2rem;
-    display: grid;
-    justify-items: center;
+  display: grid;
+  height: 100vh;
+  align-self: center;
+  grid-template-rows:
+    150px [header-s] 100px [header-e input-s] 150px [input-e collection-s] minmax(
+      20px,
+      250px
+    )
+    [collection-e];
+  grid-template-columns: minmax(25px, 250px) [content-s] 1fr [content-e] minmax(
+      25px,
+      250px
+    );
+  font-family: "Roboto", sans-serif;
 }
+
+@import "header";
+@import "form";
+@import "todo-container";

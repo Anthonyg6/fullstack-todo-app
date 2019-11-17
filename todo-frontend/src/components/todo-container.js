@@ -33,7 +33,7 @@ export default class TodoContainer extends Component {
     axios
       .delete(`http://localhost:3500/todo/todos/${_id}`)
       .then(response => {
-        console.log(response);
+        console.log("Your Todo has been deleted!");
       })
       .catch(error => {
         console.log(error);
@@ -51,17 +51,17 @@ export default class TodoContainer extends Component {
   todoItems() {
     if (this.state.data.length == 0) {
       return (
-        <div>
-          <p>You do not have any todos!</p>
+        <div className="app no-todos">
+          <p>You have no Todo's!</p>
         </div>
       );
     } else {
       return this.state.data.map(items => {
         return (
-          <div className="todos" key={items._id}>
+          <div className="app todo-collection" key={items._id}>
             <span>{items.content}</span>
             <button
-              className="deleteTodo-btn"
+              className="app deleteTodo-btn"
               onClick={() => this.deleteTodos(items._id)}
             />
           </div>
@@ -72,9 +72,9 @@ export default class TodoContainer extends Component {
 
   render() {
     return (
-      <div className="todo-container">
-        <div>{this.todoItems()}</div>
+      <div className="todo-container w3-container">
         <TodoForm />
+        <div>{this.todoItems()}</div>
       </div>
     );
   }

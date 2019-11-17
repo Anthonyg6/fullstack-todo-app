@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import TodoContainer from "./todo-container";
 import moment from "moment";
-import Header from "./header";
 
-export default class App extends Component {
+export default class Header extends Component {
   constructor() {
     super();
 
@@ -27,12 +25,13 @@ export default class App extends Component {
   componentWillUnmount() {
     clearInterval(this.intervalID);
   }
-
   render() {
     return (
-      <div className="app w3-container">
-        <Header />
-        <TodoContainer />
+      <div className="header w3-container">
+        <div className="header">
+          <h1>Welcome, what is on the agenda today?</h1>
+        </div>
+        <div className="time">{this.state.time}</div>
       </div>
     );
   }
