@@ -25,13 +25,12 @@ export default class Header extends Component {
   componentWillUnmount() {
     clearInterval(this.intervalID);
   }
+
   render() {
     return (
-      <div className="header w3-container">
-        <div className="header">
-          <h1>Welcome, what is on the agenda today?</h1>
-        </div>
-        <div className="time">{this.state.time}</div>
+      <div className="header-wrapper w3-container">
+        <h1 className="header">What is on the agenda for today?</h1>
+        <h2 className="current-clock">{this.state.time}</h2>
       </div>
     );
   }

@@ -9,3 +9,22 @@
   justify-items: center;
   overflow-y: scroll;
 }
+
+.todo-collection {
+  display: flex;
+  justify-content: center;
+
+  .deleteTodo-btn {
+    display: grid;
+    grid-row: collection-s/collection-e;
+    background-color: red;
+    border: none;
+    padding: 3px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 10px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 50px;
+  }
+}

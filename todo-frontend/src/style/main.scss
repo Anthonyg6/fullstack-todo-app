@@ -37,7 +37,7 @@ body {
   height: 100vh;
   align-self: center;
   grid-template-rows:
-    150px [header-s] 100px [header-e input-s] 150px [input-e collection-s] minmax(
+    150px [header-s] 150px [header-e input-s] 100px [input-e collection-s] minmax(
       20px,
       250px
     )
@@ -47,6 +47,31 @@ body {
       250px
     );
   font-family: "Roboto", sans-serif;
+}
+@media only screen and (min-width: 200px) and (max-width: 1000px) {
+  .header-wrapper {
+    display: grid;
+    grid-column: content-s/content-e;
+    grid-row: header-s/header-e;
+    .header {
+      h1,
+      h2 {
+        font-size: 4px;
+      }
+    }
+    font-size: 50px;
+    width: 100vw;
+    text-align: center;
+    display: block;
+  }
+
+  .current-clock {
+    width: 100vw;
+    display: block;
+  }
+  .todo-input {
+    width: 90vw;
+  }
 }
 
 @import "header";
