@@ -37,7 +37,7 @@ body {
   height: 100vh;
   align-self: center;
   grid-template-rows:
-    150px [header-s] 150px [header-e input-s] 100px [input-e collection-s] minmax(
+    150px [header-s] 150px [header-e input-s] 150px [input-e collection-s] minmax(
       20px,
       250px
     )

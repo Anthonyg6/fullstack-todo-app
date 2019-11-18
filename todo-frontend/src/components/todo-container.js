@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import TodoForm from "./todo-form";
+// import TodoForm from "./todo-form";
 
 export default class TodoContainer extends Component {
   constructor() {
@@ -58,7 +58,7 @@ export default class TodoContainer extends Component {
     } else {
       return this.state.data.map(items => {
         return (
-          <div className="todo-collection" key={items._id}>
+          <div key={items._id}>
             <span>{items.content}</span>
             <button
               className="deleteTodo-btn"
@@ -73,8 +73,7 @@ export default class TodoContainer extends Component {
   render() {
     return (
       <div className="todo-container w3-container">
-        <TodoForm />
-        <div>{this.todoItems()}</div>
+        <div className="todo-collection">{this.todoItems()}</div>
       </div>
     );
   }

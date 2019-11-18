@@ -11,8 +11,14 @@
 }
 
 .todo-collection {
-  display: flex;
-  justify-content: center;
+  // display: grid;
+  // justify-items: center;
+  // align-items: center;
+  // height: 300px;
+  // grid-column: content-s/content-e;
+  // grid-row: collection-s/collection-e;
+  // justify-items: center;
+  // overflow-y: scroll;
 
   .deleteTodo-btn {
     display: grid;

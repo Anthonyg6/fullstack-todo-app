@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TodoContainer from "./todo-container";
 import moment from "moment";
 import Header from "./header";
+import TodoForm from "./todo-form";
 
 export default class App extends Component {
   constructor() {
@@ -32,6 +33,7 @@ export default class App extends Component {
     return (
       <div className="app w3-container">
         <Header />
+        <TodoForm />
         <TodoContainer />
       </div>
     );
