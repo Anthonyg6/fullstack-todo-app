@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import TodoForm from "./todo-form";
 
 export default class TodoContainer extends Component {
@@ -51,19 +52,21 @@ export default class TodoContainer extends Component {
   todoItems() {
     if (this.state.data.length == 0) {
       return (
-        <div className="app no-todos">
+        <div className="no-todos">
           <p>You have no Todo's!</p>
         </div>
       );
     } else {
       return this.state.data.map(items => {
         return (
-          <div key={items._id}>
+          <div className="todo-delete" key={items._id}>
             <span>{items.content}</span>
             <button
-              className="deleteTodo-btn"
+              className="delete-btn"
               onClick={() => this.deleteTodos(items._id)}
-            />
+            >
+              <FontAwesomeIcon icon="check" />
+            </button>
           </div>
         );
       });

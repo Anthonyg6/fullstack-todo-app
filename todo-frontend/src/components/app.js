@@ -3,6 +3,11 @@ import TodoContainer from "./todo-container";
 import moment from "moment";
 import Header from "./header";
 import TodoForm from "./todo-form";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
+
+library.add(faCheck);
 
 export default class App extends Component {
   constructor() {
