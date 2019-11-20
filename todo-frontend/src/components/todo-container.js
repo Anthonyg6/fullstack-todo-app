@@ -59,7 +59,7 @@ export default class TodoContainer extends Component {
     } else {
       return this.state.data.map(items => {
         return (
-          <div className="todo-delete" key={items._id}>
+          <div className="todos" key={items._id}>
             <span>{items.content}</span>
             <button
               className="delete-btn"

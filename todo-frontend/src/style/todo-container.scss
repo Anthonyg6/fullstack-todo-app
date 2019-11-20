@@ -5,21 +5,25 @@
   justify-content: center;
 
   .todo-collection {
-    display: grid;
-    justify-items: center;
-    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    // padding-left: 20px;
+    align-items: start;
+    width: 300px;
     height: 300px;
     grid-column: content-s/content-e;
     grid-row: collection-s/collection-e;
+    justify-items: center;
     overflow-y: scroll;
+  }
+
+  .no-todos {
+    align-self: center;
+    padding-bottom: 100px;
   }
 }
 
-.no-todos {
-  padding-bottom: 100px;
-}
-
-.todo-delete {
+.todos {
   display: flex;
   justify-content: center;
 
@@ -33,7 +37,7 @@
     text-align: center;
     text-decoration: none;
     font-size: 10px;
-    margin: 4px 2px;
+    margin: 4px 10px;
     cursor: pointer;
     border-radius: 50px;
   }
