@@ -1,3 +1,5 @@
+// "mongodb+srv://AnthonyGallegos:n6hVxRAmH9r6uYg7@cluster0-roxtp.mongodb.net/test?retryWrites=true&w=majority"
+
 const port = process.env.PORT || 3500;
 
 const express = require("express");
@@ -16,10 +18,10 @@ app.use("/todo", todosRouter);
 app.listen(port, function() {
   console.log("Running on " + port);
 });
-
+//<dbuser>:<dbpassword>@ds047612.mlab.com:47612/heroku_27jkxtgm
 mongoose
   .connect(
-    "mongodb+srv://AnthonyGallegos:n6hVxRAmH9r6uYg7@cluster0-roxtp.mongodb.net/test?retryWrites=true&w=majority"
+    "mongodb://AnthonyGallegos:Jayce2014@ds047612.mlab.com:47612/heroku_27jkxtgm"
   )
   .then(() => {
     console.log("Connected To MongoDB");
